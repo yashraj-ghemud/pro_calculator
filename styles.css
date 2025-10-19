@@ -11,6 +11,13 @@
   --key-eq: #5b8cff;
   --shadow: 0 8px 24px rgba(0, 0, 0, .25);
   --radius: 14px;
+  /* electric border colors */
+  --screen-border: #4a9dff;
+  /* blue for the display/screen */
+  --screen-glow: rgba(74, 157, 255, 0.22);
+  --calc-border: #ff6b3a;
+  /* red-orange for the calculator outer */
+  --calc-glow: rgba(255, 107, 58, 0.14);
 }
 
 [data-theme="light"] {
@@ -65,8 +72,8 @@ body {
   color: var(--text);
   padding: 8px 12px;
   border-radius: 12px;
-  border: 1px solid rgba(255,255,255,0.08);
-  box-shadow: 0 12px 30px rgba(0,0,0,.35);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, .35);
   display: flex;
   align-items: center;
   gap: 10px;
@@ -79,18 +86,19 @@ body {
   position: absolute;
   right: 52px;
   top: 100%;
-  width: 0; height: 0;
+  width: 0;
+  height: 0;
   border-left: 8px solid transparent;
   border-right: 8px solid transparent;
-  border-top: 10px solid rgba(10,12,18,.8);
-  filter: drop-shadow(0 -2px 2px rgba(0,0,0,.2));
+  border-top: 10px solid rgba(10, 12, 18, .8);
+  filter: drop-shadow(0 -2px 2px rgba(0, 0, 0, .2));
 }
 
 .mic-coach .coach-text {
   position: relative;
   padding: 6px 10px;
   border-radius: 10px;
-  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+  background: linear-gradient(180deg, rgba(255, 255, 255, .06), rgba(255, 255, 255, .02));
 }
 
 /* Neon animated border */
@@ -101,12 +109,12 @@ body {
   border-radius: 10px;
   padding: 1px;
   background: linear-gradient(90deg, #5b8cff, #14cba8, #5b8cff);
-  -webkit-mask: 
+  -webkit-mask:
     linear-gradient(#000 0 0) content-box,
     linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
-          mask-composite: exclude;
-  mask: 
+  mask-composite: exclude;
+  mask:
     linear-gradient(#000 0 0) content-box,
     linear-gradient(#000 0 0);
   animation: neonFlow 2.2s linear infinite;
@@ -122,14 +130,27 @@ body {
 }
 
 @keyframes neonFlow {
-  0% { filter: hue-rotate(0deg); }
-  100% { filter: hue-rotate(360deg); }
+  0% {
+    filter: hue-rotate(0deg);
+  }
+
+  100% {
+    filter: hue-rotate(360deg);
+  }
 }
 
 @keyframes coachIn {
-  from { opacity: 0; transform: translateY(-6px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
+
 
 .app {
   max-width: 420px;
@@ -137,6 +158,8 @@ body {
   padding: 16px;
   display: grid;
   gap: 12px;
+  position: relative;
+  z-index: 1;
 }
 
 .topbar {
@@ -163,6 +186,143 @@ body {
   align-items: center;
   gap: 8px;
   margin-top: -4px;
+}
+
+.electric-filters {
+  position: absolute;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.electric-frame {
+  --electric-border-width: 6px;
+  --electric-radius: 28px;
+  --electric-border-color: #ff6b3a;
+  --electric-light-color: rgba(255, 107, 58, 0.26);
+  --electric-backdrop: rgba(12, 16, 24, 0.88);
+  --electric-padding: 24px;
+  position: relative;
+  width: 100%;
+  border-radius: var(--electric-radius);
+  padding: var(--electric-border-width);
+  background:
+    linear-gradient(-32deg,
+      color-mix(in oklab, var(--electric-border-color) 75%, transparent 25%),
+      transparent 46%,
+      color-mix(in oklab, var(--electric-border-color) 75%, transparent 25%)), linear-gradient(175deg, rgba(8, 10, 18, 0.9), rgba(4, 6, 12, 0.9));
+  overflow: visible;
+  isolation: isolate;
+}
+
+.electric-frame::before,
+.electric-frame::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.electric-frame::before {
+  inset: 0;
+  border-radius: inherit;
+  border: 1px solid color-mix(in oklab, var(--electric-border-color) 55%, transparent 45%);
+  opacity: 0.8;
+  mix-blend-mode: screen;
+  z-index: 0;
+}
+
+.electric-frame::after {
+  inset: calc(var(--electric-border-width) * -1.1);
+  border-radius: calc(var(--electric-radius) + var(--electric-border-width) * 1.1);
+  background: radial-gradient(circle, var(--electric-light-color) 0%, transparent 65%);
+  filter: blur(22px);
+  opacity: 0.6;
+  z-index: 0;
+}
+
+.electric-frame__content {
+  position: relative;
+  z-index: 1;
+  border-radius: calc(var(--electric-radius) - var(--electric-border-width));
+  background: var(--electric-backdrop);
+  padding: var(--electric-padding);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(6px);
+  display: grid;
+  gap: clamp(18px, 3vw, 24px);
+}
+
+.electric-frame__content::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1px solid color-mix(in oklab, var(--electric-border-color) 28%, transparent 72%);
+  opacity: 0.22;
+  pointer-events: none;
+}
+
+.electric-frame--calc {
+  --electric-border-color: #ff6b3a;
+  --electric-light-color: rgba(255, 107, 58, 0.3);
+  --electric-border-width: clamp(6px, 1.5vw, 9px);
+  --electric-radius: clamp(26px, 5vw, 34px);
+  --electric-backdrop: rgba(12, 16, 24, 0.88);
+  --electric-padding: clamp(20px, 5vw, 28px);
+}
+
+.electric-frame--screen {
+  --electric-border-color: var(--screen-border);
+  --electric-light-color: rgba(74, 157, 255, 0.36);
+  --electric-border-width: clamp(3px, 1vw, 6px);
+  --electric-radius: clamp(18px, 4vw, 24px);
+  --electric-backdrop: rgba(16, 24, 38, 0.92);
+  --electric-padding: clamp(10px, 2.4vw, 16px);
+}
+
+.electric-frame--calc::before {
+  filter: url(#swirl-calc);
+}
+
+.electric-frame--screen::before {
+  filter: url(#swirl-screen);
+}
+
+.electric-frame--screen>.electric-frame__content {
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  gap: 0;
+}
+
+@media (max-width: 540px) {
+  .electric-frame--screen {
+    --electric-border-width: 3px;
+    --electric-radius: 18px;
+    --electric-padding: 8px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .electric-frame--screen {
+    --electric-border-width: 6px;
+    --electric-radius: 26px;
+    --electric-padding: 18px;
+  }
+}
+
+.calculator-electric {
+  margin-top: clamp(12px, 3vw, 24px);
+}
+
+.calculator-electric__content {
+  grid-template-columns: 1fr;
+}
+
+.screen-wrapper {
+  width: 100%;
 }
 
 .voice-status {
@@ -204,9 +364,22 @@ body {
 }
 
 @keyframes micNudge {
-  0%, 100% { transform: translateY(0) scale(1); box-shadow: 0 0 0 0 rgba(20,203,168,0); }
-  30% { transform: translateY(-2px) scale(1.04); box-shadow: 0 0 18px 6px rgba(20,203,168,.25); }
-  60% { transform: translateY(0) scale(1.02); box-shadow: 0 0 10px 3px rgba(20,203,168,.15); }
+
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+    box-shadow: 0 0 0 0 rgba(20, 203, 168, 0);
+  }
+
+  30% {
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 0 18px 6px rgba(20, 203, 168, .25);
+  }
+
+  60% {
+    transform: translateY(0) scale(1.02);
+    box-shadow: 0 0 10px 3px rgba(20, 203, 168, .15);
+  }
 }
 
 .icon-btn,
@@ -684,6 +857,18 @@ body {
   /* Hide background animation overflow */
 }
 
+/* Screen/display thin orange border exactly around the display area */
+.display::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 6;
+  box-shadow: 0 8px 30px var(--screen-glow);
+  border: 2px solid var(--screen-border);
+}
+
 /* Animated background particles when calculation happens */
 .display.calculating-bg {
   animation: displayGlow 2s ease-out;
@@ -731,6 +916,7 @@ body {
   opacity: 0;
   z-index: 1;
   pointer-events: none;
+
   /* Mic guide text */
   .mic-guide {
     position: relative;
@@ -754,10 +940,19 @@ body {
   }
 
   @keyframes micGuideSweep {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    0% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
+
+    100% {
+      background-position: 0% 50%;
+    }
   }
+
   z-index: 2;
   /* Above background effects */
   transition: all 0.2s ease;
@@ -1018,6 +1213,33 @@ body {
   /* Enable smooth scrolling and prevent overflow issues */
   overflow-x: hidden;
   position: relative;
+}
+
+/* Full-screen electric border */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  border-radius: 0;
+  pointer-events: none;
+  border: clamp(3px, 0.8vw, 6px) solid color-mix(in oklab, var(--screen-border) 78%, transparent 22%);
+  box-shadow:
+    0 0 25px rgba(74, 157, 255, 0.25),
+    0 0 60px rgba(74, 157, 255, 0.18),
+    0 0 140px rgba(74, 157, 255, 0.12);
+  mix-blend-mode: screen;
+  filter: url(#swirl-screen);
+  opacity: 0.95;
+  z-index: -1;
+  transition: inset 0.4s ease, border-radius 0.4s ease;
+}
+
+@media (max-width: 640px) {
+  body::after {
+    opacity: 0;
+    border-width: 0;
+    box-shadow: none;
+  }
 }
 
 /* Gradient animation that slowly shifts colors */
