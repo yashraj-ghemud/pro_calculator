@@ -50,7 +50,6 @@ const historySearch = $("#historySearch");
 const app = $(".app");
 const voiceToggle = $("#voiceToggle");
 const voiceStatusEl = $("#voiceStatus");
-const micCoach = document.getElementById('micCoach');
 
 // Allow VOICE_API_BASE override via config.js, URL params, or localStorage
 const params = new URLSearchParams(location.search);
@@ -841,29 +840,6 @@ function handleInput({ val, action }) {
 
 // Event listeners
 document.addEventListener('DOMContentLoaded', () => {
-  // Mic coachmark logic
-  try {
-    const hideCoach = localStorage.getItem('procalc:hide-mic-coach') === 'true';
-    if (!hideCoach && micCoach) {
-      micCoach.hidden = false;
-      const closeCoach = () => {
-        micCoach.style.transition = 'opacity .25s ease';
-        micCoach.style.opacity = '0';
-        setTimeout(() => micCoach.remove(), 250);
-        localStorage.setItem('procalc:hide-mic-coach', 'true');
-        const micBtn = document.getElementById('voiceToggle');
-        if (micBtn) {
-          micBtn.classList.add('mic-highlight');
-          setTimeout(() => micBtn.classList.remove('mic-highlight'), 1500);
-        }
-      };
-      micCoach.querySelector('.coach-close')?.addEventListener('click', closeCoach);
-      // Optional auto-hide after 6s if untouched
-      setTimeout(() => {
-        if (document.body.contains(micCoach)) closeCoach();
-      }, 6000);
-    }
-  } catch {}
   // Button clicks
   // ================ ENHANCED BUTTON CLICKS WITH EFFECTS ================
 

@@ -21,12 +21,6 @@
 
 
   <main class="app" data-theme="dark">
-    <!-- Mic coachmark (non-blocking) -->
-    <div id="micCoach" class="mic-coach" role="status" aria-live="polite" hidden>
-      <span class="coach-text">Click the mic to speak</span>
-      <button class="coach-close" aria-label="Dismiss">×</button>
-    </div>
-
     <header class="topbar" aria-label="Calculator header">
       <h1 class="brand">Pro Calculator</h1>
       <div class="controls">
@@ -38,6 +32,7 @@
           title="Toggle voice control">🎙️</button>
         <button id="apiSettings" class="icon-btn" aria-label="Set voice backend URL"
           title="Set voice backend URL">🔗</button>
+  <span class="mic-guide" role="status">Click the mic to calculate with voice</span>
       </div>
     </header>
 
