@@ -1,0 +1,14 @@
+[Unit]
+Description=Pro Calculator Voice Service
+After=network.target
+
+[Service]
+User=www-data
+WorkingDirectory=/opt/procalc
+Environment="PYTHONUNBUFFERED=1"
+ExecStart=/opt/procalc/.venv/bin/uvicorn voice_service:app --host 0.0.0.0 --port 8000
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,6 @@
+fastapi==0.115.0
+uvicorn[standard]==0.30.6
+SpeechRecognition==3.10.4
+PyAudio==0.2.14
+scikit-learn==1.5.2
+joblib==1.4.2

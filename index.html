@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>Pro Calculator</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="manifest" href="manifest.webmanifest" />
+
+  <link rel="icon" type="image/png" sizes="16x16" href="gi.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="gi.png">
+</head>
+
+<body>
+  <!-- PARTICLE SYSTEM CONTAINER -->
+  <div id="particle-container"></div>
+
+  <div id="cursor-sparkles"></div>
+  <div id="custom-cursor"></div>
+
+  <svg class="electric-filters" aria-hidden="true">
+    <defs>
+      <filter id="swirl-screen" color-interpolation-filters="sRGB" x="-20%" y="-20%" width="140%" height="140%">
+        <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise1" seed="1" />
+        <feOffset in="noise1" dx="0" dy="0" result="offsetNoise1">
+          <animate attributeName="dy" values="700;0" dur="6s" repeatCount="indefinite" calcMode="linear" />
+        </feOffset>
+
+        <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise2" seed="1" />
+        <feOffset in="noise2" dx="0" dy="0" result="offsetNoise2">
+          <animate attributeName="dy" values="0;-700" dur="6s" repeatCount="indefinite" calcMode="linear" />
+        </feOffset>
+
+        <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise3" seed="2" />
+        <feOffset in="noise3" dx="0" dy="0" result="offsetNoise3">
+          <animate attributeName="dx" values="490;0" dur="6s" repeatCount="indefinite" calcMode="linear" />
+        </feOffset>
+
+        <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise4" seed="2" />
+        <feOffset in="noise4" dx="0" dy="0" result="offsetNoise4">
+          <animate attributeName="dx" values="0;-490" dur="6s" repeatCount="indefinite" calcMode="linear" />
+        </feOffset>
+
+        <feComposite in="offsetNoise1" in2="offsetNoise2" result="part1" />
+        <feComposite in="offsetNoise3" in2="offsetNoise4" result="part2" />
+        <feBlend in="part1" in2="part2" mode="color-dodge" result="combinedNoise" />
+
+        <feDisplacementMap in="SourceGraphic" in2="combinedNoise" scale="30" xChannelSelector="R"
+          yChannelSelector="B" />
+      </filter>
+      <filter id="swirl-calc" color-interpolation-filters="sRGB" x="-20%" y="-20%" width="140%" height="140%">
+        <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="7" />
+        <feColorMatrix type="hueRotate" result="pt1">
+          <animate attributeName="values" values="0;360;" dur=".6s" repeatCount="indefinite" calcMode="paced" />
+        </feColorMatrix>
+        <feComposite />
+        <feTurbulence type="turbulence" baseFrequency="0.03" numOctaves="7" seed="5" />
+        <feColorMatrix type="hueRotate" result="pt2">
+          <animate attributeName="values" values="0;333;199;286;64;168;256;157;360;" dur="5s" repeatCount="indefinite"
+            calcMode="paced" />
+        </feColorMatrix>
+        <feBlend in="pt1" in2="pt2" mode="normal" result="combinedNoise" />
+        <feDisplacementMap in="SourceGraphic" scale="30" xChannelSelector="R" yChannelSelector="B" />
+      </filter>
+    </defs>
+  </svg>
+
+
+  <main class="app" data-theme="dark">
+    <header class="topbar" aria-label="Calculator header">
+      <h1 class="brand">Pro Calculator</h1>
+      <div class="controls">
+        <button id="themeToggle" class="icon-btn" aria-label="Toggle theme" title="Toggle theme">🎨</button>
+        <button id="historyToggle" class="icon-btn" aria-label="Toggle history" title="Toggle history">🕘</button>
+        <button id="a11yToggle" class="icon-btn" aria-label="Toggle high contrast"
+          title="Toggle high contrast">🅰️</button>
+        <button id="voiceToggle" class="icon-btn mic-off" aria-label="Toggle voice control"
+          title="Toggle voice control">🎙️</button>
+        <button id="apiSettings" class="icon-btn" aria-label="Set voice backend URL"
+          title="Set voice backend URL">🔗</button>
+        <span class="mic-guide" role="status">Click the mic to calculate with voice</span>
+      </div>
+    </header>
+
+    <div class="voice-panel" role="status" aria-live="polite">
+      <span id="voiceStatus" class="voice-status">Mic off</span>
+    </div>
+
+    <div class="calculator-electric electric-frame electric-frame--calc">
+      <div class="electric-frame__content calculator-electric__content">
+        <div class="screen-wrapper electric-frame electric-frame--screen">
+          <div class="electric-frame__content">
+            <section class="display" aria-live="polite" aria-atomic="true">
+              <div id="expression" class="expression" title="Expression"></div>
+              <div id="result" class="result" title="Result">0</div>
+            </section>
+          </div>
+        </div>
+
+        <section class="keypad" aria-label="Calculator keys">
+          <!-- Memory Row -->
+          <div class="row">
+            <button class="btn fn" data-action="MC" aria-label="Memory Clear">MC</button>
+            <button class="btn fn" data-action="MR" aria-label="Memory Recall">MR</button>
+            <button class="btn fn" data-action="M+" aria-label="Memory Add">M+</button>
+            <button class="btn fn" data-action="M-" aria-label="Memory Subtract">M-</button>
+          </div>
+
+          <!-- Function / Clear Row -->
+          <div class="row">
+            <button class="btn fn" data-action="CE" aria-label="Clear Entry">CE</button>
+            <button class="btn fn" data-action="C" aria-label="Clear All">C</button>
+            <button class="btn fn" data-action="BACK" aria-label="Backspace">⌫</button>
+            <button class="btn op" data-value="/" aria-label="Divide">÷</button>
+          </div>
+
+          <!-- Main Grid -->
+          <div class="row">
+            <button class="btn fn" data-action="SQRT" aria-label="Square Root">√</button>
+            <button class="btn fn" data-action="PERCENT" aria-label="Percent">%</button>
+            <button class="btn fn" data-action="RECIP" aria-label="Reciprocal">1/x</button>
+            <button class="btn op" data-value="*" aria-label="Multiply">×</button>
+          </div>
+
+          <div class="row">
+            <button class="btn" data-value="7" aria-label="Seven">7</button>
+            <button class="btn" data-value="8" aria-label="Eight">8</button>
+            <button class="btn" data-value="9" aria-label="Nine">9</button>
+            <button class="btn op" data-value="-" aria-label="Minus">−</button>
+          </div>
+
+          <div class="row">
+            <button class="btn" data-value="4" aria-label="Four">4</button>
+            <button class="btn" data-value="5" aria-label="Five">5</button>
+            <button class="btn" data-value="6" aria-label="Six">6</button>
+            <button class="btn op" data-value="+" aria-label="Plus">+</button>
+          </div>
+
+          <div class="row">
+            <button class="btn" data-value="1" aria-label="One">1</button>
+            <button class="btn" data-value="2" aria-label="Two">2</button>
+            <button class="btn" data-value="3" aria-label="Three">3</button>
+            <button class="btn fn" data-action="OPEN" aria-label="Open Parenthesis">(</button>
+          </div>
+
+          <div class="row">
+            <button class="btn wide" data-value="0" aria-label="Zero">0</button>
+            <button class="btn" data-value="." aria-label="Decimal">.</button>
+            <button class="btn fn" data-action="CLOSE" aria-label="Close Parenthesis">)</button>
+            <button class="btn eq" data-action="EQUALS" aria-label="Equals">=</button>
+          </div>
+        </section>
+
+        <aside id="history" class="history" aria-label="History drawer" hidden>
+          <header class="history-header">
+            <h2>History</h2>
+            <div class="history-actions">
+              <input id="historySearch" type="search" placeholder="Search…" aria-label="Search history" />
+              <button id="exportCSV" class="mini-btn" aria-label="Export CSV">CSV</button>
+              <button id="exportJSON" class="mini-btn" aria-label="Export JSON">JSON</button>
+              <button id="clearHistory" class="mini-btn danger" aria-label="Clear History">Clear</button>
+            </div>
+          </header>
+          <ul id="historyList" class="history-list" role="list"></ul>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <!-- Optional config override: define window.PROCALC_VOICE_API_BASE in config.js -->
+  <script src="config.js"></script>
+  <script src="script.js" defer></script>
+</body>
+
+</html>

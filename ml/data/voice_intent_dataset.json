@@ -1,0 +1,166 @@
+[
+    {
+        "text": "equals",
+        "label": "calculate"
+    },
+    {
+        "text": "calculate",
+        "label": "calculate"
+    },
+    {
+        "text": "show result",
+        "label": "calculate"
+    },
+    {
+        "text": "give me the answer",
+        "label": "calculate"
+    },
+    {
+        "text": "finish",
+        "label": "calculate"
+    },
+    {
+        "text": "clear",
+        "label": "clear"
+    },
+    {
+        "text": "clear everything",
+        "label": "clear"
+    },
+    {
+        "text": "reset calculator",
+        "label": "clear"
+    },
+    {
+        "text": "erase entry",
+        "label": "clear"
+    },
+    {
+        "text": "backspace",
+        "label": "backspace"
+    },
+    {
+        "text": "delete last",
+        "label": "backspace"
+    },
+    {
+        "text": "remove the last digit",
+        "label": "backspace"
+    },
+    {
+        "text": "undo",
+        "label": "backspace"
+    },
+    {
+        "text": "stop listening",
+        "label": "stop"
+    },
+    {
+        "text": "mic off",
+        "label": "stop"
+    },
+    {
+        "text": "end voice",
+        "label": "stop"
+    },
+    {
+        "text": "don't listen",
+        "label": "stop"
+    },
+    {
+        "text": "ignore this",
+        "label": "noop"
+    },
+    {
+        "text": "never mind",
+        "label": "noop"
+    },
+    {
+        "text": "random words",
+        "label": "noop"
+    },
+    {
+        "text": "one plus two",
+        "label": "expression"
+    },
+    {
+        "text": "seven times five",
+        "label": "expression"
+    },
+    {
+        "text": "twelve minus four",
+        "label": "expression"
+    },
+    {
+        "text": "thirty three divided by eleven",
+        "label": "expression"
+    },
+    {
+        "text": "open bracket three plus four close bracket",
+        "label": "expression"
+    },
+    {
+        "text": "nine point five plus two",
+        "label": "expression"
+    },
+    {
+        "text": "add six and eight",
+        "label": "expression"
+    },
+    {
+        "text": "subtract seven from nineteen",
+        "label": "expression"
+    },
+    {
+        "text": "multiply four by three",
+        "label": "expression"
+    },
+    {
+        "text": "divide twenty by five",
+        "label": "expression"
+    },
+    {
+        "text": "46 + 9",
+        "label": "expression"
+    },
+    {
+        "text": "forty six plus seven whole multiply by four",
+        "label": "expression"
+    },
+    {
+        "text": "open bracket twelve minus five close bracket times nine",
+        "label": "expression"
+    },
+    {
+        "text": "sum of eight and four whole divide by two",
+        "label": "expression"
+    },
+    {
+        "text": "add five and nine then multiply by two",
+        "label": "expression"
+    },
+    {
+        "text": "modulus of nineteen and four",
+        "label": "expression"
+    },
+    {
+        "text": "twenty three mod five",
+        "label": "expression"
+    },
+    {
+        "text": "thirty six modulo eight",
+        "label": "expression"
+    },
+    {
+        "text": "remainder when fifty three is divided by six",
+        "label": "expression"
+    },
+    {
+        "text": "open parenthesis forty plus ten close parenthesis times three",
+        "label": "expression"
+    },
+    {
+        "text": "seventy two divided by open bracket eight minus two close bracket",
+        "label": "expression"
+    }
+]

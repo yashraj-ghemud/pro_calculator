@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pro Calculator - Mobile Testing Guide</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .version {
+            color: #7f8c8d;
+            font-size: 0.9em;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: #34495e;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #3498db;
+        }
+
+        .test-section {
+            background: #f8f9fa;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+
+        .checklist {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .checklist li {
+            padding: 10px;
+            margin: 8px 0;
+            background: white;
+            border-radius: 5px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .checklist li:before {
+            content: "☐ ";
+            color: #3498db;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .device-specs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .device {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid #e0e0e0;
+        }
+
+        .device-name {
+            font-weight: bold;
+            color: #2980b9;
+            margin-bottom: 5px;
+        }
+
+        .device-size {
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        .breakpoint {
+            background: #e8f4f8;
+            padding: 10px 15px;
+            margin: 10px 0;
+            border-left: 4px solid #2980b9;
+            border-radius: 4px;
+        }
+
+        .tip {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+
+        .tip:before {
+            content: "💡 ";
+            font-size: 1.2em;
+        }
+
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #e74c3c;
+        }
+
+        .launch-btn {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 6px;
+            margin: 20px 0;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        .launch-btn:hover {
+            background: #2980b9;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.5em;
+            }
+
+            .device-specs {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>📱 Pro Calculator Mobile Testing Guide</h1>
+        <p class="version">Version 2.0 | Updated: October 20, 2025</p>
+
+        <a href="index.html" class="launch-btn">🚀 Launch Pro Calculator</a>
+
+        <h2>🎯 Mobile Optimizations Applied</h2>
+        <div class="test-section">
+            <p>The calculator has been optimized with the following improvements:</p>
+            <ul class="checklist">
+                <li>Responsive sizing for all screen sizes (375px - 768px+)</li>
+                <li>Reduced element sizes and spacing for compact mobile view</li>
+                <li>44px minimum touch targets for better tap accuracy</li>
+                <li>Disabled heavy animations on mobile for better performance</li>
+                <li>Enhanced touch feedback with scale and brightness effects</li>
+                <li>Smooth scrolling on iOS with <code>-webkit-overflow-scrolling</code></li>
+                <li>Landscape mode optimization</li>
+                <li>PWA-ready with app manifest support</li>
+            </ul>
+        </div>
+
+        <h2>📐 Test Screen Sizes</h2>
+        <div class="device-specs">
+            <div class="device">
+                <div class="device-name">iPhone SE</div>
+                <div class="device-size">375 × 667px</div>
+            </div>
+            <div class="device">
+                <div class="device-name">iPhone 12/13</div>
+                <div class="device-size">390 × 844px</div>
+            </div>
+            <div class="device">
+                <div class="device-name">iPhone 14 Pro Max</div>
+                <div class="device-size">430 × 932px</div>
+            </div>
+            <div class="device">
+                <div class="device-name">Galaxy S21</div>
+                <div class="device-size">360 × 800px</div>
+            </div>
+            <div class="device">
+                <div class="device-name">iPad Mini</div>
+                <div class="device-size">768 × 1024px</div>
+            </div>
+        </div>
+
+        <h2>📊 Responsive Breakpoints</h2>
+        <div class="breakpoint">
+            <strong>≤768px:</strong> Tablet & Phone view
+            <ul style="margin-top: 10px; padding-left: 20px;">
+                <li>Compact sizing applied</li>
+                <li>Simplified animations</li>
+                <li>Reduced particles</li>
+            </ul>
+        </div>
+        <div class="breakpoint">
+            <strong>≤420px:</strong> Standard phone view
+            <ul style="margin-top: 10px; padding-left: 20px;">
+                <li>Further size reduction</li>
+                <li>Smaller fonts and padding</li>
+            </ul>
+        </div>
+        <div class="breakpoint">
+            <strong>≤375px:</strong> Small phone (iPhone SE)
+            <ul style="margin-top: 10px; padding-left: 20px;">
+                <li>Minimal sizing</li>
+                <li>Maximum compactness</li>
+            </ul>
+        </div>
+        <div class="breakpoint">
+            <strong>≤340px:</strong> Extra small phones
+            <ul style="margin-top: 10px; padding-left: 20px;">
+                <li>Stacked layout for controls</li>
+                <li>Vertical header arrangement</li>
+            </ul>
+        </div>
+
+        <h2>✅ Testing Checklist</h2>
+        <div class="test-section">
+            <h3>Visual Tests</h3>
+            <ul class="checklist">
+                <li>All content fits within viewport (no horizontal scroll)</li>
+                <li>Text is readable without zooming</li>
+                <li>Buttons are large enough to tap easily (44px+)</li>
+                <li>Spacing between elements is appropriate</li>
+                <li>Calculator maintains proper aspect ratio</li>
+                <li>Electric border effects are visible but not overwhelming</li>
+            </ul>
+
+            <h3>Functionality Tests</h3>
+            <ul class="checklist">
+                <li>All buttons respond to touch</li>
+                <li>Calculations work correctly</li>
+                <li>History panel scrolls smoothly</li>
+                <li>Voice control button is accessible</li>
+                <li>Theme toggle works</li>
+                <li>Keyboard input works (if physical keyboard)</li>
+                <li>Landscape mode displays correctly</li>
+            </ul>
+
+            <h3>Performance Tests</h3>
+            <ul class="checklist">
+                <li>Page loads quickly (under 2 seconds on 3G)</li>
+                <li>Animations are smooth (60fps)</li>
+                <li>No lag when tapping buttons</li>
+                <li>Scrolling is smooth and responsive</li>
+                <li>No jank during calculations</li>
+                <li>Battery drain is reasonable</li>
+            </ul>
+
+            <h3>Browser Tests</h3>
+            <ul class="checklist">
+                <li>Safari iOS 12+</li>
+                <li>Chrome Mobile 90+</li>
+                <li>Firefox Mobile 90+</li>
+                <li>Samsung Internet 14+</li>
+                <li>Edge Mobile</li>
+            </ul>
+        </div>
+
+        <h2>🔧 How to Test on Mobile</h2>
+        <div class="test-section">
+            <h3>Option 1: Real Device Testing</h3>
+            <ol style="padding-left: 20px;">
+                <li>Connect your phone to the same network as your computer</li>
+                <li>Find your computer's local IP address</li>
+                <li>On your phone, open browser and navigate to: <code>http://YOUR_IP:PORT/p1/index.html</code></li>
+                <li>Test all features and interactions</li>
+            </ol>
+
+            <h3>Option 2: Browser DevTools</h3>
+            <ol style="padding-left: 20px;">
+                <li>Open the calculator in Chrome or Edge</li>
+                <li>Press <code>F12</code> to open DevTools</li>
+                <li>Click the device toggle icon (or press <code>Ctrl+Shift+M</code>)</li>
+                <li>Select different devices from the dropdown</li>
+                <li>Test in both portrait and landscape orientations</li>
+            </ol>
+
+            <h3>Option 3: Online Testing Tools</h3>
+            <ul style="padding-left: 20px; margin-top: 10px;">
+                <li>BrowserStack (browserstack.com)</li>
+                <li>LambdaTest (lambdatest.com)</li>
+                <li>Responsively App (desktop app)</li>
+            </ul>
+        </div>
+
+        <div class="tip">
+            <strong>Pro Tip:</strong> When testing, rotate your phone to landscape mode to verify the landscape
+            optimizations. The calculator should adapt gracefully to the wider viewport while maintaining usability.
+        </div>
+
+        <h2>🐛 Known Mobile Considerations</h2>
+        <div class="test-section">
+            <ul style="padding-left: 20px;">
+                <li><strong>Custom Cursor:</strong> Automatically hidden on touch devices</li>
+                <li><strong>Particles:</strong> Reduced opacity (30%) on mobile for performance</li>
+                <li><strong>Animations:</strong> Simplified to 0.3s duration on touch devices</li>
+                <li><strong>Electric Borders:</strong> Filters disabled on very small screens</li>
+                <li><strong>Background Effects:</strong> Mathematical symbols hidden on mobile</li>
+            </ul>
+        </div>
+
+        <h2>📱 PWA Installation</h2>
+        <div class="test-section">
+            <p>To install as a Progressive Web App on your phone:</p>
+            <ol style="padding-left: 20px; margin-top: 10px;">
+                <li><strong>iOS (Safari):</strong> Tap Share button → "Add to Home Screen"</li>
+                <li><strong>Android (Chrome):</strong> Tap menu → "Add to Home screen" or "Install app"</li>
+                <li>The calculator will open like a native app</li>
+                <li>Works offline after first load</li>
+            </ol>
+        </div>
+
+        <div class="tip">
+            <strong>Need Help?</strong> If you encounter any issues during mobile testing, check the browser console for
+            errors (enable Remote Debugging on mobile devices for detailed logs).
+        </div>
+
+        <h2>📈 Size Comparisons</h2>
+        <div class="test-section">
+            <table style="width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr style="background: #f0f0f0;">
+                        <th style="padding: 10px; text-align: left;">Element</th>
+                        <th style="padding: 10px; text-align: center;">Desktop</th>
+                        <th style="padding: 10px; text-align: center;">Tablet (768px)</th>
+                        <th style="padding: 10px; text-align: center;">Phone (375px)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="padding: 10px; border-bottom: 1px solid #ddd;">App Margin</td>
+                        <td style="padding: 10px; text-align: center; border-bottom: 1px solid #ddd;">32px</td>
+                        <td style="padding: 10px; text-align: center; border-bottom: 1px solid #ddd;">12px</td>
+                        <td style="padding: 10px; text-align: center; border-bottom: 1px solid #ddd;">6px</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; border-bottom: 1px solid #ddd;">Result Font</td>
+                        <td style="padding: 10px; text-align: center; border-bottom: 1px solid #ddd;">2.2rem</td>
+                        <td style="padding: 10px; text-align: center; border-bottom: 1px solid #ddd;">1.6rem</td>
+                        <td style="padding: 10px; text-align: center; border-bottom: 1px solid #ddd;">1.4rem</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; border-bottom: 1px solid #ddd;">Button Padding</td>
+                        <td style="padding: 10px; text-align: center; border-bottom: 1px solid #ddd;">14px</td>
+                        <td style="padding: 10px; text-align: center; border-bottom: 1px solid #ddd;">12px</td>
+                        <td style="padding: 10px; text-align: center; border-bottom: 1px solid #ddd;">10px</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; border-bottom: 1px solid #ddd;">Display Height</td>
+                        <td style="padding: 10px; text-align: center; border-bottom: 1px solid #ddd;">96px</td>
+                        <td style="padding: 10px; text-align: center; border-bottom: 1px solid #ddd;">80px</td>
+                        <td style="padding: 10px; text-align: center; border-bottom: 1px solid #ddd;">70px</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div
+            style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 2px solid #e0e0e0; color: #7f8c8d;">
+            <p>Made with ❤️ for mobile users</p>
+            <p style="font-size: 0.9em; margin-top: 10px;">Pro Calculator | Mobile-Optimized Version 2.0</p>
+        </div>
+    </div>
+</body>
+
+</html>
