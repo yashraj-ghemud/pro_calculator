@@ -124,6 +124,10 @@ function updateDisplay() {
 
 function showError(msg) {
   if (resultEl) {
+<<<<<<< HEAD
+=======
+    console.log(`❌ Showing error with animation: ${msg}`);
+>>>>>>> ec13129d4e584958e57dbba3715253f153457b0c
 
     // Add error shake animation to result
     resultEl.classList.remove('bounce-in', 'digit-cascade', 'typewriter', 'result-glow');
@@ -147,6 +151,10 @@ function showError(msg) {
       displayEl.style.boxShadow = '';
 
       updateDisplay();
+<<<<<<< HEAD
+=======
+      console.log('🧹 Cleaned up error animation');
+>>>>>>> ec13129d4e584958e57dbba3715253f153457b0c
     }, 2000);
   }
 }
@@ -539,6 +547,10 @@ function calculate() {
   if (!currentExpression) return;
 
   try {
+<<<<<<< HEAD
+=======
+    console.log('🎬 Starting calculation with cinematic effects!');
+>>>>>>> ec13129d4e584958e57dbba3715253f153457b0c
 
     // STEP 1: Add background calculation effect to display
     const displayEl = $('.display');
@@ -554,6 +566,10 @@ function calculate() {
     displayEl.classList.add('calculating-bg');
     expressionEl.classList.add('calculating');
 
+<<<<<<< HEAD
+=======
+    console.log('🌟 Background particle animation started');
+>>>>>>> ec13129d4e584958e57dbba3715253f153457b0c
 
     // STEP 3: Auto-close parentheses and clean expression
     const openCount = (currentExpression.match(/\(/g) || []).length;
@@ -569,6 +585,10 @@ function calculate() {
     const result = safeEvaluate(expr);
     const formattedResult = formatNumber(result);
 
+<<<<<<< HEAD
+=======
+    console.log(`🧮 Calculation complete: ${expr} = ${result}`);
+>>>>>>> ec13129d4e584958e57dbba3715253f153457b0c
 
     // STEP 5: Add to history
     addToHistory(currentExpression, result);
@@ -580,6 +600,7 @@ function calculate() {
 
     if (resultLength > 10) {
       animationType = 'typewriter'; // Long results get typewriter effect
+<<<<<<< HEAD
     } else if (resultValue > 1000000) {
       animationType = 'digit-cascade'; // Big numbers get cascade effect
       displayEl.classList.add('celebration'); // Add celebration background
@@ -587,6 +608,19 @@ function calculate() {
       animationType = 'bounce-in'; // Small integers get bounce
     } else {
       animationType = 'result-glow'; // Decimals and medium numbers get glow
+=======
+      console.log('📝 Using typewriter animation for long result');
+    } else if (resultValue > 1000000) {
+      animationType = 'digit-cascade'; // Big numbers get cascade effect
+      displayEl.classList.add('celebration'); // Add celebration background
+      console.log('🎊 Using digit cascade + celebration for big result');
+    } else if (resultValue === Math.floor(resultValue) && resultValue < 100) {
+      animationType = 'bounce-in'; // Small integers get bounce
+      console.log('🦘 Using bounce animation for small result');
+    } else {
+      animationType = 'result-glow'; // Decimals and medium numbers get glow
+      console.log('✨ Using glow animation for decimal result');
+>>>>>>> ec13129d4e584958e57dbba3715253f153457b0c
     }
 
     // STEP 7: Apply result animation with delay for dramatic effect
@@ -601,10 +635,18 @@ function calculate() {
       // Add success pulse to entire display
       displayEl.classList.add('success-pulse');
 
+<<<<<<< HEAD
+=======
+      console.log(`🎭 Applied ${animationType} animation to result: ${formattedResult}`);
+>>>>>>> ec13129d4e584958e57dbba3715253f153457b0c
 
       // STEP 8: Clean up animation classes after they complete
       setTimeout(() => {
         resultEl.classList.remove(animationType);
+<<<<<<< HEAD
+=======
+        console.log('🧹 Cleaned up result animation classes');
+>>>>>>> ec13129d4e584958e57dbba3715253f153457b0c
       }, animationType === 'typewriter' ? 1000 : animationType === 'digit-cascade' ? 1500 : 1200);
 
       setTimeout(() => {
@@ -623,9 +665,17 @@ function calculate() {
           displayEl.classList.remove('celebration');
         }, 2000);
       }
+<<<<<<< HEAD
     }, 2000);
 
   } catch (error) {
+=======
+      console.log('🧹 Cleaned up background animation classes');
+    }, 2000);
+
+  } catch (error) {
+    console.log('❌ Calculation error, showing error animation');
+>>>>>>> ec13129d4e584958e57dbba3715253f153457b0c
 
     // STEP 10: Error animation
     const resultEl = $('.result');
@@ -843,6 +893,10 @@ document.addEventListener('DOMContentLoaded', () => {
       if (val !== undefined) {
         // Number buttons get thunder effect
         if (/^\d$/.test(val)) {
+<<<<<<< HEAD
+=======
+          console.log(`🌩️ Thunder effect triggered for number: ${val}`);
+>>>>>>> ec13129d4e584958e57dbba3715253f153457b0c
           btn.classList.add('thunder-effect');
 
           // Remove effect class after animation completes
@@ -852,6 +906,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         // Operator buttons get fire effect
         else if (['+', '-', '*', '/', '%'].includes(val)) {
+<<<<<<< HEAD
+=======
+          console.log(`🔥 Fire effect triggered for operator: ${val}`);
+>>>>>>> ec13129d4e584958e57dbba3715253f153457b0c
           btn.classList.add('fire-effect');
 
           // Remove effect class after animation completes
@@ -861,6 +919,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         // Decimal and parentheses get ripple effect
         else if (val === '.' || val === '(' || val === ')') {
+<<<<<<< HEAD
+=======
+          console.log(`💧 Ripple effect triggered for: ${val}`);
+>>>>>>> ec13129d4e584958e57dbba3715253f153457b0c
           btn.classList.add('ripple');
 
           setTimeout(() => {
@@ -872,6 +934,10 @@ document.addEventListener('DOMContentLoaded', () => {
       // Action buttons get special effects
       if (action !== undefined) {
         if (action === 'EQUALS') {
+<<<<<<< HEAD
+=======
+          console.log('🎉 Equals explosion effect triggered!');
+>>>>>>> ec13129d4e584958e57dbba3715253f153457b0c
           btn.classList.add('equals-effect');
 
           setTimeout(() => {
@@ -880,6 +946,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         // Function buttons (SQRT, RECIP, etc.) get purple glow
         else if (['SQRT', 'RECIP', 'PERCENT'].includes(action)) {
+<<<<<<< HEAD
+=======
+          console.log(`✨ Special function effect triggered for: ${action}`);
+>>>>>>> ec13129d4e584958e57dbba3715253f153457b0c
           btn.classList.add('special-effect');
 
           setTimeout(() => {
@@ -888,6 +958,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         // Clear buttons get ripple
         else if (['C', 'CE', 'BACK'].includes(action)) {
+<<<<<<< HEAD
+=======
+          console.log(`🧹 Clear effect triggered for: ${action}`);
+>>>>>>> ec13129d4e584958e57dbba3715253f153457b0c
           btn.classList.add('ripple');
 
           setTimeout(() => {
@@ -896,6 +970,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         // Memory buttons get special glow
         else if (['MC', 'MR', 'M+', 'M-'].includes(action)) {
+<<<<<<< HEAD
+=======
+          console.log(`💾 Memory effect triggered for: ${action}`);
+>>>>>>> ec13129d4e584958e57dbba3715253f153457b0c
           btn.classList.add('special-effect');
 
           setTimeout(() => {
@@ -922,6 +1000,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Find the corresponding button element for visual effects
     if (/^\d$/.test(key)) {
       targetButton = $(`.btn[data-value="${key}"]`);
+<<<<<<< HEAD
+=======
+      console.log(`🌩️ Keyboard thunder effect for number: ${key}`);
+>>>>>>> ec13129d4e584958e57dbba3715253f153457b0c
       if (targetButton) {
         targetButton.classList.add('thunder-effect');
         setTimeout(() => targetButton.classList.remove('thunder-effect'), 600);
@@ -929,6 +1011,10 @@ document.addEventListener('DOMContentLoaded', () => {
       handleInput({ val: key });
     } else if (['+', '-', '*', '/'].includes(key)) {
       targetButton = $(`.btn[data-value="${key}"]`);
+<<<<<<< HEAD
+=======
+      console.log(`🔥 Keyboard fire effect for operator: ${key}`);
+>>>>>>> ec13129d4e584958e57dbba3715253f153457b0c
       if (targetButton) {
         targetButton.classList.add('fire-effect');
         setTimeout(() => targetButton.classList.remove('fire-effect'), 800);
@@ -936,6 +1022,10 @@ document.addEventListener('DOMContentLoaded', () => {
       handleInput({ val: key });
     } else if (key === '.') {
       targetButton = $(`.btn[data-value="."]`);
+<<<<<<< HEAD
+=======
+      console.log('💧 Keyboard ripple effect for decimal');
+>>>>>>> ec13129d4e584958e57dbba3715253f153457b0c
       if (targetButton) {
         targetButton.classList.add('ripple');
         setTimeout(() => targetButton.classList.remove('ripple'), 600);
@@ -943,6 +1033,10 @@ document.addEventListener('DOMContentLoaded', () => {
       handleInput({ val: key });
     } else if (key === '(' || key === ')') {
       targetButton = $(`.btn[data-action="${key === '(' ? 'OPEN' : 'CLOSE'}"]`);
+<<<<<<< HEAD
+=======
+      console.log(`💧 Keyboard ripple effect for parenthesis: ${key}`);
+>>>>>>> ec13129d4e584958e57dbba3715253f153457b0c
       if (targetButton) {
         targetButton.classList.add('ripple');
         setTimeout(() => targetButton.classList.remove('ripple'), 600);
@@ -950,6 +1044,10 @@ document.addEventListener('DOMContentLoaded', () => {
       handleInput({ val: key });
     } else if (key === 'Enter' || key === '=') {
       targetButton = $(`.btn[data-action="EQUALS"]`);
+<<<<<<< HEAD
+=======
+      console.log('🎉 Keyboard equals explosion effect!');
+>>>>>>> ec13129d4e584958e57dbba3715253f153457b0c
       if (targetButton) {
         targetButton.classList.add('equals-effect');
         setTimeout(() => targetButton.classList.remove('equals-effect'), 1000);
@@ -957,6 +1055,10 @@ document.addEventListener('DOMContentLoaded', () => {
       handleInput({ action: 'EQUALS' });
     } else if (key === 'Escape') {
       targetButton = $(`.btn[data-action="C"]`);
+<<<<<<< HEAD
+=======
+      console.log('🧹 Keyboard clear effect');
+>>>>>>> ec13129d4e584958e57dbba3715253f153457b0c
       if (targetButton) {
         targetButton.classList.add('ripple');
         setTimeout(() => targetButton.classList.remove('ripple'), 600);
@@ -964,6 +1066,10 @@ document.addEventListener('DOMContentLoaded', () => {
       handleInput({ action: 'C' });
     } else if (key === 'Backspace') {
       targetButton = $(`.btn[data-action="BACK"]`);
+<<<<<<< HEAD
+=======
+      console.log('🧹 Keyboard backspace effect');
+>>>>>>> ec13129d4e584958e57dbba3715253f153457b0c
       if (targetButton) {
         targetButton.classList.add('ripple');
         setTimeout(() => targetButton.classList.remove('ripple'), 600);
@@ -971,6 +1077,10 @@ document.addEventListener('DOMContentLoaded', () => {
       handleInput({ action: 'BACK' });
     } else if (key === '%') {
       targetButton = $(`.btn[data-action="PERCENT"]`);
+<<<<<<< HEAD
+=======
+      console.log('✨ Keyboard percent effect');
+>>>>>>> ec13129d4e584958e57dbba3715253f153457b0c
       if (targetButton) {
         targetButton.classList.add('special-effect');
         setTimeout(() => targetButton.classList.remove('special-effect'), 700);
