@@ -1,5 +1,32 @@
-# pro_calculator
-> A local-first web calculator with an optional voice-control layer — static frontend + FastAPI voice backend + lightweight intent classifier and a small trainer UI.
+<p align="center">
+  <img src="./.github/readme-assets/signal.gif" alt="Animated signal / product visual for pro_calculator" width="100%" />
+</p>
+
+<h1 align="center">pro_calculator</h1>
+
+<p align="center"><strong>A local-first web calculator with an optional voice-control layer — static frontend + FastAPI voice backend + lightweight intent classifier and a small trainer UI.</strong></p>
+
+<p align="center"><code>REPO//SIGNAL</code> · <code>SIGNAL / PRODUCT</code> · <code>LOOPING README EXPERIENCE</code></p>
+
+## Live signal
+
+| Lens | Readout |
+| --- | --- |
+| Portfolio lane | **SIGNAL / PRODUCT** |
+| Code surface | **25** tracked files observed |
+| Primary materials | **Python, JavaScript, JSON, Markdown** |
+| Verification | **0** test-related files observed |
+
+> A moving scan of the project surface. The animated frame above is a lightweight visual signature; the sections below remain the source of truth for implementation details.
+
+## Motion map
+
+`SIGNAL` → `SHAPE` → `RELEASE`
+
+Use the animated banner as the first signal, then move into the implementation dossier. The recommended next step is to verify the documented setup command against the repository scripts before extending the project.
+
+<details open>
+<summary><strong>Open the full project dossier</strong></summary>
 
 ## Overview
 Pro Calculator adds a voice-control layer to a static calculator UI. The repo contains a static frontend (HTML/CSS/JS + service worker), a local FastAPI voice service that transcribes audio and classifies voice intents, a small scikit-learn intent pipeline, and a Tkinter manual trainer for collecting samples and hot-retraining the model.
@@ -110,3 +137,9 @@ Note: the README recommends running the backend on a demo laptop and provides st
   - For quick local inspection, run the service and trainer per the Getting started steps above and examine ml/data/ for persisted datasets and model artifacts.
 
 (Do not assume any further contribution workflow beyond the files in the repository.)
+
+</details>
+
+---
+
+<p align="center"><sub>README motion system · visual layer by RepoSignal · implementation details remain project-specific</sub></p>
